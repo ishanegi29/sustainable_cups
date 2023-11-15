@@ -1,0 +1,768 @@
+---
+title: "OMAO"
+subtitle: "Sustainable Plastic Cups"
+author: Arianna Haven, Isha Negi, Zachary Stecher, Rishi Jarmarwala
+date: December 13, 2021
+output: 
+  html_document:
+    toc: true 
+    toc_float: true
+    number_sections: false
+    css: bootstrap.css
+---
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  comment = "#>",
+  fig.path = "figs/", # Folder where rendered plots are saved
+  fig.width = 7.252, # Default plot width
+  fig.height = 4, # Default plot height
+  fig.retina = 3 # For better plot resolution
+)
+
+# Load libraries here
+library(tidyverse)
+library(here)
+library(knitr)
+library(logitr)
+library(maddTools)
+library(cowplot)
+```
+
+# Abstract
+Our survey analysis was done on behalf of a company named OMAO, which already makes biodegradable straws and is interested in expanding into the biodegradable cup business. Disposable plastic cups are highly convenient products that fall in a large market catered towards events, social gatherings, offices, home use, and more. However, single use plastic has a long lasting negative effect on the environment. OMAO's straws are able to degrade within 90 days after being thrown out. They are hoping to apply this material technology onto their plastic cup production. This product is meant to compete with other biodegradable and non-biodegradable plastic cups in the market. The cup will be catered towards the regular consumer market and the product attributes we are analyzing are biodegradability, price, size (volume), design (logo or no logo), opacity, and quantity (how many sold together). Based on the analysis and feedback from the company's CEO, we recommend that OMAO produces a biodegradable 16 oz, opaque cup with a logo and that they sell it in packs of 50 for $7.50 ($0.15/cup).
+
+
+
+# Introduction
+OMAO is a “green” plastic company founded in 2020 by a team of individuals that were frustrated with paper products. While paper products are very environmentally friendly, their function is short-term as most can become useless when wet. On the other hand, plastic products are more convenient to use but are much more harmful to the environment through toxic pollutants when sitting in landfills. OMAO wants consumers to be able to use plastic products while not harming the environment, so they developed their own biodegradable plastic. Most biodegradable plastics use Polyacitic Acid (PLS) or “Corn Plastic,” which can degrade in an ideal temperature-controlled environment but could take between 100-1000 years to degrade if not held in the right conditions. OMAO, however, uses Polyhydroxalkanoates (PHA), which is a vegetable-oil based naturally-occurring material that produces CO2 and H20 when broken down. OMAO has already developed and sold PHA straws, which can degrade in 90 days after being thrown out or composted. Moving forward, OMAO is branching out into more plastic products and is interested in designing a plastic cup that uses the same PHA material as the straws. Since plastic cups are a regularly used product by the typical consumer, the goal is to create a durable, environmentally-friendly product that can compete with other plastic cups and become a prevalent item in the market. ^[OMAO Website: https://www.omaostraw.com]
+
+</br>
+
+### Product Attributes
+
+The product attributes of disposable plastic cups that might be significant to consumers to include the following:
+
+
+- *Price*
+  - Competing product prices range from $0.03 to $0.28 per cup. To stay competitive we need to stay well within this range.
+ 
+- *Size*
+  - Competitors range in sizes from 9 to 18 ounces.
+ 
+- *Quantity* 
+  - The per-pack quantity in which competing products are sold ranges from 25 to 2000 cups.
+ 
+- *Design*
+  - Colors, logos, and structural design aesthetics can give or take away from a cup’s appeal or versatility.
+ 
+- *Opacity*
+  - Some cups are clear and allow a beverage to be visible while others are opaque and conceal their contents.
+ 
+- *Material Biodegradability* 
+  - As our product is made of a biodegradable plastic, PHA, we would like to see if environmental consciousness plays a part in decision making within this market.
+
+</br>
+
+### Decision Variables
+
+Decision variables are the components of the design that we will consider for the final rendering of the product. All of these variables are also included in the product attributes we have outlined. This is due to the fact that in simple, single-use products with a fixed material, most design variables are surface level. Our decision variables and ranges will include the following:
+
+- *Price*
+  - $0.05 to $0.30 per cup
+  
+- *Size*
+  - 9 or 16 fluid ounces
+ 
+- *Quantity* 
+  - 25 to 100 cups in each package
+ 
+- *Logo*
+  - Whether to include OMAO's logo on the cup or not
+
+- *Opacity* 
+  - Clear or fully opaque
+
+- *Material*
+  - Regular plastic or Sustainable Plastic
+
+</br>
+
+### Sample Product
+This shows an example of the opaque 16 oz cup with the OMAO logo.
+<center>
+<img src="https://raw.githubusercontent.com/arihaven/OMAO/main/O_Gr.png" width=200>
+</center>
+
+</br>
+
+
+
+# Survey Design
+**Eligibility criteria** for respondents to be 18 years or older was set in the final survey. The purpose was to filter the prospective buyers who can make conscious customer perspective choices while taking the survey. We also included a screen-out question asking if the respondents use disposable plastic cups. Additionally, a sample question is displayed with three choices and a obvious “right” answer to make sure the respondee is paying attention. Lastly, a shopping scenario is introduced at the start of the survey to help respondents make realistic choices as done in daily life.
+
+**Demographic questions** provide context of the background information of a particular respondent which helps in analyzing the data collected from them. The demographic questions in our survey covers birth year, gender identity, zip code(location), employment status, annual household income and where they would regularly purchase cups. 
+
+The **educational material** section available in the survey describes the various product attributes of the plastic cup images available in the conjoint survey. The intent of this section is to familiarize the respondents with the content of the survey.
+
+The product attributes mentioned in the education section are:
+
+- *Quantity*: The number of cups present in a package.
+- *Volume & Dimensions*: Both volume and dimensions are defined along with references for a better understanding of what the sizes mean in real life.
+- *Price*: The list price (without taxes) that the consumer will have to pay for a package of cups in the store as well as the price per cup.
+- *Opacity*: Refers to the ability to see through the cup.
+- *Logos*: Whether or not the cup has the OMAO logo on it.
+- *Appearance*: Four different types of images are used in the survey based on the combination of logo and opacity of the cups.
+- *Material* : Refers to the material the cup is made of. The two choices are ‘Regular plastic’ and ‘Sustainable plastic’ based on the type of material.
+
+The following attributes along with respective levels have been used in the conjoint questions for our survey:
+
+</br>
+
+Attribute | Level
+----------|------
+Opacity | No (Translucent), Yes (Opaque)
+Logo | No, Yes
+Quantity | 25, 50, 75, 100
+Volume | 9 oz, 16 oz
+Plastic Material | Regular, Sustainable
+Price | $0.05, $0.10, $0.15, $0.20, $0.25, $0.30
+
+</br>
+
+### Changes from Pilot Survey
+
+After completing the analysis on our pilot survey, we discovered that we would need at least 600 people to complete our final survey in order to receive valuable data. Since it may be difficult to get 600 respondents, the team worked together to narrow down some of the attributes and levels. Previously, the options for logos included *no logo*, *blue logo*, or *green logo*. In the final survey, we simplified this by taking out the option of color and changing the levels to *logo* or *no logo*. This change decreased the number of respondents to 400, which was more achievable (we got 361 before filtering out the bad data).
+
+The team also received other helpful feedback from classmates that took the pilot survey. A few suggestions were about the survey mechanics such as including an ending page and getting rid of the “contact us” line at the bottom of the survey. But some of our classmates had very insightful feedback about the structure of our survey. For example, we had pictures of cups with a logo that said “I am not plastic” but then labeled the material as plastic. Since this caused confusion for a number of people, we decided to change the logo on the cups to be a more generic OMAO logo. The change from multiple colors of logos to just one, also decreased the number of respondents needed, as noted above. Additionally, we had our prices listed in terms of packs of cups which was difficult for some people to compare to the other choices because the quantity of each package varied. To solve this issue, in our updated survey we included the price per cup as well as the price per package of cups. Lastly, we added a question about how many cups the respondent uses per month in case we needed it for the analysis.
+
+The distinct levels for each attribute mentioned above are defined in values relevant to the real life scenario of buying plastic cups. Our survey consists of **eight** conjoint questions per respondent with each question having a set of **three** different alternatives to choose from. The three alternatives are displayed as three distinct images with corresponding set of product attribute details.
+
+</br>
+
+### Sample Choice Question
+
+<center>
+<img src="figs/choice.jpeg" width=700>
+</center>
+
+
+
+# Data Analysis
+
+## Sample Description
+
+In total, we had 361 respondents to our survey. After cleaning the data, however, we had 181 responses that we could use. By analyzing the demographic information from the respondents, we were able to find some interesting statistics about the sample size. Of the 181 respondents, 51% of them were women, 45% were men, 3% are gender non-conforming, and 1% preferred not to say. By asking about their employment status, we found that 48% of the respondents are employed full-time, 21% are students, 15% are unemployed, 10% work part-time, and 6% put "other." Additionally, 62% of our sample were above the age of 25, which was a demographic we looked at because we thought there would be a split between views on environmentalism above and below 25 years old. A summary of all the demographic information for the respondents, including how many cups they use each month and where they buy their cups, is outlined in the table below.
+
+```{r, echo=FALSE}
+demographics <- read_csv(here::here('data', 'demographics.csv'))
+kable(demographics, show_col_types = FALSE)
+```
+
+## Data Cleaning
+
+1. We created survey time columns for each of the three pilot surveys.
+2. We combined the data from each survey.
+3. We filtered out respondents that do not use plastic cups.
+4. We filtered out respondents that did not answer all of the choice questions as they did not show enough care to finish the survey, and therefore, may not have cared very much about making accurate choices for the questions that they did answer.
+5. We filtered out respondents that answered the survey in the 10th percentile for speed as there is a chance they did not pay attention to the questions being asked or the answers they were choosing.
+6. We filtered out respondents that answered the attention check question incorrectly because this means that they were either not paying close attention to the question or did not understand the survey.
+7. For our subgroup analysis, in which we compared Gen Z (people 25 and under) with the rest of the population, we had to filter by age. A new column was made in the data subtracting their year of birth from 2021. Any yields 25 and under were categorized as Gen Z or Group A while those over 25 were categorized as Group B. We also filtered out the one respondent that responded "prefer not to say" to the age question.
+
+## Modeling
+
+The following three types of models were made:
+
+- Simple Logit Model
+- Mixed Logit Model
+- Logit Model with Sub-Groups
+
+All models were developed according the following baseline utility:
+
+$$u_j = \beta_1 x_j^{\mathrm{price}} + \beta_2 \delta_j^{\mathrm{opacity\_yes}} + \beta_3 x_j^{\mathrm{quantity}} + \beta_4 \delta_j^{\mathrm{plastic\_sustainable}}+ \beta_5 \delta_j^{\mathrm{logo\_yes}} + \beta_6 \delta_j^{\mathrm{volume16}} + \epsilon_j$$
+
+</br>
+
+In the model, the following is the meaning for each attribute:
+
+- Price: Cost per cup (continuous)
+- Opacity_yes: Whether or not the cup is opaque (discrete)
+- Quantity: Number of cups (continuous)
+- Plastic_sustainable: Whether or not the material was sustainable.
+- Logo_yes: Whether or not there was a logo on the side of the cup (discrete)
+- Volume_16: Whether or not the cup was 16 ounces. (discrete)
+
+### Simple Logit Model
+
+Based on our simple logit model, we were able to get the following coefficients.
+
+```{r models, echo = FALSE}
+
+load(here("models", "model_mnl.RData"))
+
+load(here("models", "model_mxl.RData"))
+
+load(here("models", "model_mnl_group.RData"))
+```
+
+Attribute | Coefficient | Standard Error
+----------|-------------|---------------
+Price | -10.8475321 | 0.4733620
+Opacity_yes | -0.0654425 | 0.0684628
+Quantity | -0.0029867 | 0.0012279
+Plastic_sustainable | 0.8575108 | 0.0712448
+Logo_yes | -0.0990601 | 0.0677265
+volume16 | 0.6193382 | 0.0691597
+
+
+</br>
+
+<center>
+Coefficient Uncertainty
+</center>
+
+<center>
+<img src="figs/mnl_simple_logit.png">
+</center>
+
+</br>
+
+The uncertainty relative to the coefficients is very minimal. Based on the coefficients, price has an expected huge impact on the model and as it increases, the overall utility will decrease. Plastic material has a large impact to the model as well, in which having a sustainable plastic cup would increase the utility. Additionally, having a 16 ounce cup over a 9 ounce cup increases utility. In terms of the opacity, logo, and quantity, the impact on the model is low. An increase in quantity would decrease utility. Having an opaque cup and a cup with a logo would also decrease utility. 
+
+</br>
+
+### Mixed Logit Model
+
+We modeled the survey data as a mixed model as well, in which we tried to determine which parameter could be fixed and which could vary randomly when in a WTP space. Based on assumption, we set all attributes to vary randomly. When initially testing the model, we considered all parameters as normally distributed. Based on those results, *quantity* had a very small standard deviation ($\sigma$) value, and we decided to consider it as fixed. The standard deviation ($\sigma$) and mean ($\mu$) coefficients below reflect that change.
+
+Attribute | Coefficient | Standard Error
+----------|-------------|---------------
+Price ($\mu$) | -13.3105155 | 1.2039098
+Price ($\sigma$) | 5.9866335 | 2.0396237
+Opacity_yes ($\mu$) | -0.0974191 | 0.0871198
+Opacity_yes ($\sigma$) | 0.6331842 | 0.4720495
+Quantity | -0.0034410 | 0.0014587
+Plastic_sustainable ($\mu$) | 0.9895653 | 0.1131969  
+Plastic_sustainable ($\sigma$) | 1.0494404 | 0.3369675
+Logo_yes ($\mu$) | -0.2295833 | 0.1430181 
+Logo_yes ($\sigma$) | 0.4865615 | 0.5628729
+Volume16 ($\mu$) | 0.6188740 | 0.0928421 
+Volume16 ($\sigma$) | 1.0759012 | 0.3565480
+
+</br>
+
+All of the coefficients impact the overall utility the same way as the simple logit model does.  
+
+</br>
+
+### Sub-Group Logit Model
+
+We ran a sub-group analysis on the simple logit model design. Group A consists of respondents who are the ages 25 and below. Group B consists of respondents who are the ages above 25. Below shows the model coefficients for Group A and the difference between Group A and B.
+
+Attribute | Coefficient | Standard Error
+----------|-------------|---------------
+price | -12.028 | 0.81655
+opacity_yes | -0.12536 | 0.11412
+quantity | -0.0035813| 0.0020403
+plastic_sustainable | 0.95343 | 0.11681e
+logo_yes | -0.063200 | 0.10866
+volume16 | 0.55521 | 0.11332
+price_B | 0.18122 | 0.10031
+opacity_yes_B | 0.90198 | 0.14274
+quantity_B | 0.00091109 | 0.0025573
+plastic_sustainable_B | -0.15741 | 0.14756
+logo_yes_B | -0.052856 | 0.13907
+volume16_B | 0.10599 | 0.14321e  
+
+</br>
+
+Based on these coefficients, we were able to determine the model coefficients for each group separately. Below are the average coefficients and confidence interval for each group.
+
+```{r group, echo = FALSE}
+load(here("models", "model_mnl_group.RData"))
+
+coefs_g <- coef(model_mnl_group)
+cov_g <- vcov(model_mnl_group)
+
+# Take 10,000 draws of the coefficients
+coef_draws <- as.data.frame(MASS::mvrnorm(10^4, coefs_g, cov_g))
+coef_draws_A <- coef_draws %>%
+    select(price, opacity_yes, quantity, plastic_sustainable, logo_yes, volume16)
+coef_draws_B <- coef_draws %>%
+    mutate(
+        price       = price + price_B,
+        opacity_yes = opacity_yes + opacity_yes_B,
+        quantity   = quantity + quantity_B,
+        plastic_sustainable = plastic_sustainable + plastic_sustainable_B,
+        logo_yes = logo_yes + logo_yes_B,
+        volume16 = volume16 + volume16_B) %>%
+    select(price, opacity_yes, quantity, plastic_sustainable, logo_yes, volume16)
+
+```
+
+</br>
+
+**Group A:**
+`r kable(ci(coef_draws_A))`
+
+</br>
+
+**Group B:**
+`r kable(ci(coef_draws_B))`
+
+</br>
+
+Similarly to the mixed logit model, the coefficients for each group impact the overall utility the same way.
+
+</br>
+
+# Results
+
+## Willingness to Pay
+
+To assess which attributes that drive consumer choice, we created plots for willingness to pay. Below is the willingness to pay calculated from our simple logit model.
+
+</br>
+
+<center>
+WTP: Simple Logit Model
+</center>
+
+<center>
+<img src="figs/wtp_mnl_simple.png">
+</center>
+
+</br>
+
+Opacity, quantity, and logo all had negative WTPs. However, these WTPs are very close to 0, opacity and quantity having standard errors containing 0. Therefore, opacity, quantity, and logo do not have big effects on consumer choice. The two attributes that have larger effects on consumer choice are the sustainability of the material and volume of the cup. Consumers are willing to pay an average of 7.91 cents extra per cup for them to be made out of sustainable plastic and 5.71 cents extra per cup for them to be 16 ounces as opposed to 9 ounces.
+
+Next, we looked at the WTPs for our two subgroups, those under 25 and those over 25, to see if there are significant differences in what is driving their choices. Below are the plots for willingness to pay calculated from both of our subgroup models.
+
+</br>
+
+<center>
+WTP: Group A - Age 25 and Below
+</center>
+
+<center>
+<img src="figs/wtp_A.png">
+</center>
+
+</br>
+
+<center>
+WTP: Group B - Above Age 25
+</center>
+
+
+<center>
+<img src="figs/wtp_B.png">
+</center>
+
+</br>
+
+Both groups have negligible WTPs for opacity, quantity, and logo with errors containing 0. However, it seems that the under 25 group has a slightly stronger preference for translucent cups and less of an aversion to logos. The older group has a stronger preference for a 16 ounce cups and would be willing to pay 1.84 more cents per cup for 16 ounce cups than the under 25 group.
+
+</br>
+
+## Market Simulations
+
+Our market simulation is based off of variation in all attributes of our model. We compared our expected design with a mixture of 8 different products coming from 4 different brands. We have two brands with sustainable plastic cups and two brands with regular plastic cups. Each brand has a cup that is 16 oz. and a cup that is not. The prices varies among the levels we have outlined. The cup we are expecting to design is opaque, has a logo, is 16 oz., is sustainable, comes in a package of 50, and costs $0.20 per cup. The price chosen is relative to typical sustainable price per cups. It is to reasonably take into account an unknown production cost. The opacity and logo choice is based on OMAO planning to design an opaque white cup with a logo. The volume choice is according to the higher willingness to pay for a 16 oz. cup.
+
+```{r sim, echo=FALSE}
+scenarios_all <- read_csv(here('data', 'allMarket.csv'))
+
+scenarios_all %>% 
+  kable()
+
+```
+
+</br>
+
+The following is a market simulation based on the scenarios above.
+
+</br>
+
+<center>
+Market Simulation
+</center>
+
+<center>
+<img src="figs/sims_price_20.png">
+</center>
+
+OMAO Market Share: **14.3%**
+
+
+</br>
+
+The market share for OMAO's cup is 14.3%. While this share is very competitive against other sustainable cup products, it is still ~10-15% less than its next highest share holders. The higher market share holders come from 16 ounce regular plastic material products produced by Great Value and Solo. In order to increase market share, decreasing the price would be effective.
+
+The following is the market share if we decreased the price to $0.15 per cup.
+
+</br>
+
+<center>
+Market Simulation ($0.15 /cup)
+</center>
+
+<center>
+<img src="figs/sims_price_15.png">
+</center>
+
+OMAO Market Share: **22.3%**
+
+</br>
+
+The market share for OMAO's cup is now competitive with its closest market share holders. While it is not the greatest share, it carries about ~1-3% to the closest shares. While this share can be effective, there could be other ways to also make changes to the product to increase the share. 
+
+The following market share is based on changing the appearance to translucent and no logo.
+
+</br>
+
+<center>
+Market Simulation (Translucent w/o Logo)
+</center>
+
+<center>
+<img src="figs/sims_price_app.png">
+</center>
+
+OMAO Market Share: **25.3%**
+
+</br>
+
+At $0.15 and with an appearance design change, OMAO's cup has the highest market share while varying ~1-5% with its next highest competitors. However, the increase in market share after a design change was only ~3%, meaning the change is not necessary. The recommendation would mean changing the design to clear and without a logo, which is not what was initially desired. In terms of market adoption, price has the largest influence on consumer choice. Sustainable material also has positive influence based on WTP, therefore this is a design aspect that should not be changed. 
+
+</br>
+
+
+## Sensitivity
+
+The sensitivity of each attribute was calculated based on the market scenario used in simulations. The baseline for OMAO's product is according to the cup having a price of *$0.20 per cup, the cup being opaque, the cup having a logo, the cup being sold in packages of 50, the cup being sustainable, and the cup being 16 oz.*
+
+The figure below shows plots of sensitivity to market share for each attribute.
+
+<center>
+Attribute Sensitivity For Each Attribute
+</center>
+
+<center>
+<img src="figs/sens.png">
+</center>
+
+</br>
+
+The market is very sensitive towards price, material, and volume. The higher the price, the lower the market share would be. Sustainable material products and more volume influence a higher market share. Quantity has virtually no impact on market share as it varies. The difference in market share distribution when having a clear or opaque cup and having a logo or no logo cup is very minimal, but having a translucent cup and no logo each have slightly higher market share influence.
+
+</br>
+
+The revenue analysis is based on the sensitivity of price. Plastic products are part of a billion dollar market, so we have analyzed revenue based on a localized market size of 100,000,000 individual cups per year.
+
+The following shows the revenue distribution based on price per cup.
+
+</br>
+
+<center>
+Revenue - Price Sensitivity
+</center>
+
+<center>
+<img src="figs/rev.png">
+</center>
+
+
+</br>
+
+The maximum revenue comes from ~$0.13 per cup, which would account for ~$3.4 Million in revenue from the specified market size. For our expected design at $0.20 per cup, the revenue account for ~$2.8 Million. If we were able to reduce the price down to $0.15 per cup, the revenue would account for ~$3.3 Million. As this is only a revenue plot, cost considerations must also be made in trying to maximize profit. It is also important to note that the uncertainty related to these values is very high. 
+
+## Analysis Limitations
+
+Based on our pilot analysis, we concluded that 400 responses would be ideal for minimizing uncertainty when estimating our specific model. Our survey choice data was developed off of about 200 respondents, which could have skewed our uncertainty. In terms of outside issues, knowing the production cost for the material used for our cup could change our price recommendation. 
+
+
+</br>
+
+# Final Recommendations and Conclusions
+
+  With a thorough evaluation of all the variables in our research, the price attribute can be ascertained as the most dominant which helped us navigate through important trends and patterns in the cups market. When priced at $0.20 per cup, OMAO has a decent market share but can be improved to be much more competitive. By lowering the price to $0.15 per cup, OMAO’s market share increases by about ~8% and becomes much more competitive with other products. Changing appearance could increase the market share by ~3%, but that may not be a substantial change to alter a design for. As you can see, the driving factor for market share is price. The biggest opportunity we have for increasing the market share of the product, would be to lower the price even further. Aside from price, the material choice and volume also affected the market share. The other design attributes do not affect the profitability as much as cost. 
+
+  It is important to keep in mind, however, that the lower price would not yield favorable revenue despite the dominance over the market share. The rate of $ 0.15 per cup would be an apt recommendation for OMAO's product pricing strategy. This is verified by equivalent market shares with two of the top contenders in the cups industry. From the revenue graph, it can be observed that $0.13 per cup is the price that results in the highest revenue for the company (at about $3.4 million). However, this does not take production costs into account, which is an essential piece of information that will affect profitability. Therefore, we would hold our recommendation for selling the product at $0.15 per cup in order to hopefully maximize profit. If we knew how much it cost to produce one cup out of PHA, we would have a more accurate recommendation of what price to sell the cups at.
+
+  Based solely on the analysis, we would recommend selling a biodegradable, 16 oz, translucent cup with no logo at $0.15 per cup. This would result in a 25.3% market share. However, after taking into consideration the company expectations and limitations of the material (i.e. has to be opaque with a logo), this recommendation would change slightly. Seeing as the opacity and including the logo on the cup does not significantly affect the market shares, we honor the company’s interest in having an opaque cup with a logo. Additionally, this would contribute to brand awareness which is especially important when introducing a new product in the market. **Therefore, our final recommendation would be that OMAO produces a biodegradable 16 oz, opaque cup with a logo and that they sell it in packs of 50 for $7.50 ($0.15/cup).** This product  would result in a 22.3% market share. Any deviation from this endorsed product, such as increasing price, could result in a decrease of market shares. 
+
+
+
+</br>
+
+# Survey Limitations
+
+The past few years have witnessed a significant change in the market strategy for the packaging/plastic industry as the consumers now also value eco-friendly alternatives along with quality. Our model inspected variables that were deemed important to evaluate consumer behavior while introducing a new sustainable product into a well-established competing market landscape. With the current plastic industry dynamics, the inclusion of characteristics like ‘re-usability’ and ‘insulation’ might lead to a different set of decisions or results. The research analysis outcomes were influenced by the set of demographic questions in the survey to collate the background information of respondents. In addition to the existing questions, other questions that could integrate a varied set of survey responses and impact further analysis include the purpose of using the cup (an event/daily use) or thoughts about single-use plastic. The most important aspect not covered in our demographic assessment was the consumer’s opinion on the use of sustainable products on a daily basis. The deliberate decision was taken to avoid any bias or influence which might impact the selection of survey responses. Moreover, a change in the criteria set to filter or isolate the responses would alter the consequences of our analysis. 
+
+
+</br>
+
+# Appendix
+## Code
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+```
+
+## Survey
+### Survey 1
+#### Welcome!
+
+Thank you for participating in this survey being conducted by a research team from The George Washington University. The aim of this research is to assess the customer preference in cups depending on multiple attributes.
+
+---
+
+##### Consent form
+
+This survey is being conducted by students at The George Washington University. We will not be collecting any identifying data, such as your name or address. Answering these questions will take about 10 minutes and will provide us information to understand consumer perspective in relation to disposable plastic cups.
+
+Please indicate your consent before proceeding.
+
+By clicking on ‘I Agree’ option below, you acknowledge that you are at least 18 years of age, have read and understood the information provided above, and that your participation in this survey is voluntary.
+
+- I Agree
+- I Disagree
+
+---
+
+Before we go on, do you use disposable plastic cups?
+
+- Yes
+- No
+
+*(Screen out those who say no)*
+
+### Survey 2
+
+```{r, include=FALSE}
+# Read in the choice questions
+library(tidyverse)
+survey <- read_csv("https://formr.org/assets/tmp/admin/t9LU04_6qJo68GFcg1tHgfW4f2ekG-ZWKPZXHQVGtHeJ.txt?v1636593399")
+
+# Define the respondent ID
+respondentID <- sample(survey$respID, 1)
+
+# Create the subset of rows for that respondent ID
+df <- survey %>%
+    filter(respID == respondentID) %>%
+    mutate(image = paste0("https://raw.githubusercontent.com/arihaven/OMAO/main/", image))
+
+# Convert df to json
+df_json <- jsonlite::toJSON(df)
+```
+
+#### Great work! 
+
+Now that you've shared a bit about yourself, we'd like you to consider a shopping scenario in which you can choose some plastic cup to purchase from a set of plastic cups with different attributes.
+
+Let's learn about these attributes:
+
+##### Quantity
+- Quantity refers to how many cups are in a package.
+
+##### Volume & Dimensions
+- Volume refers to the amount of liquid each cups can hold in ounces. 
+- The dimensions of a 9 oz cup are typically around 4 inches high and 3 inches in diameter. The dimensions of a 16 oz cup are typically around 4.75 inches high and 3.875 inches in diameter.
+- To give further perspective on how much a fluid ounce is:
+  - A standard wine pour is 5 oz.
+  - A standard can of soda is 12 oz.
+  - A Starbucks tall is 12 oz and a grande is 16 oz.
+
+##### Price
+- Price refers to the list price you will pay (not including taxes) for a package of cups in a store.
+
+##### Appearance
+- We will show six different types of cups from two categories:
+
+##### Opacity
+- Opacity refers to the ability to see through an object. This relates to whether or not the cup is clear. 
+
+Opaque | Translucent
+-------|------------
+<img src="https://raw.githubusercontent.com/arihaven/OMAO/main/O_No.png" width=100> | <img src="https://raw.githubusercontent.com/arihaven/OMAO/main/T_No.png" width=100> 
+
+##### Logo
+
+No Logo | With Logo
+--------|-----------|------------
+<img src="https://raw.githubusercontent.com/arihaven/OMAO/main/O_No.png" width=100> | <img src="https://raw.githubusercontent.com/arihaven/OMAO/main/O_Gr.png" width=100>
+
+##### Material
+- Material in this survey refers to the eco-friendliness of a cup.
+  - *Regular Plastic* (PLA, polypropylene, polystyrene, and PET): Common materials used to make most plastic cups currently.
+  - *Sustainable Plastic* (PHA “Polyhydroxalkanoates”): PHA is a type of naturally recurring, non-toxic bioplastic material derived from vegetable oil that decomposes in 90 days.
+  
+---
+
+We'll now begin the choice tasks. On the next few pages we will show you three options of cups and we'll ask you to choose the one you most prefer. 
+
+For example, if these were the only cups available, which would you choose?
+
+[mc_button type question with the following three options]
+
+**Option 1**
+
+<img src="https://raw.githubusercontent.com/arihaven/OMAO/main/O_No.png" width=100>
+
+**Quantity**: 25 cups
+**Volume**: 16 oz
+**Price**: $6.25 /package (Unit Price: $0.25 /cup)
+**Material**: Regular Plastic
+
+**Option 2**
+
+<img src="https://raw.githubusercontent.com/arihaven/OMAO/main/O_No.png" width=100>
+
+**Quantity**: 25 cups
+**Volume**: 16 oz
+**Price**: $3.75 /package (Unit Price: $0.15 /cup)
+**Material**: Regular Plastic
+
+**Option 3**
+
+<img src="https://raw.githubusercontent.com/arihaven/OMAO/main/O_No.png" width=100>
+
+**Quantity**: 25 cups
+**Volume**: 16 oz
+**Price**: $5.00 /package (Unit Price: $0.20 /cup)
+**Material**: Regular Plastic
+
+---
+
+#### Great work!
+
+We will now show you 8 sets of choice questions starting on the next page.
+
+---
+
+[mc_button type question with the following three options]
+
+(1 of 8) If these were your only options, which would you choose?
+
+```{r, include=FALSE}
+library(dplyr)
+alts <- jsonlite::fromJSON(df_json) %>% 
+  filter(qID == 1)
+alt1 <- alts %>% filter(altID == 1)
+alt2 <- alts %>% filter(altID == 2)
+alt3 <- alts %>% filter(altID == 3)
+alt4 <- alts %>% filter(altID == 4)
+```
+
+**Option 1**
+
+<img src=`r alt1$image` width=100>
+
+**Quantity**: `r alt1$Quantity` cups
+**Volume**: `r alt1$Volume` oz
+**Price**: $ `r alt1$Price*alt1$Quantity` /package (Unit Price: $`r alt1$Price` /cup)
+**Material**: `r alt1$PlasticMaterial` Plastic
+
+**Option 2**
+
+<img src=`r alt2$image` width=100>
+
+**Quantity**: `r alt2$Quantity` cups
+**Volume**: `r alt2$Volume` oz
+**Price**: $ `r alt2$Price*alt2$Quantity` /package (Unit Price: $`r alt2$Price` /cup)
+**Material**: `r alt2$PlasticMaterial` Plastic
+
+**Option 3**
+
+<img src=`r alt3$image` width=100>
+
+**Quantity**: `r alt3$Quantity` cups
+**Volume**: `r alt3$Volume` oz
+**Price**: $ `r alt3$Price*alt3$Quantity` /package (Unit Price: $`r alt3$Price` /cup)
+**Material**: `r alt3$PlasticMaterial` Plastic
+
+### Survey 3
+
+#### Nice job!
+
+We're almost done! We'd just like to ask just a few more questions about you which we will only use for analyzing our survey data.
+
+(1) In what year were you born?
+
+(Drop down menu including `Prefer not to say` and years `1920` - `2003`)
+
+(2) What is your gender identity?
+Different identity (please state):
+
+- Male
+- Female
+- Genderqueer/gender non-conforming
+- Prefer not to say
+
+3) What is your zip code?
+(please state):
+
+(4) What is your annual household income (from all sources) before taxes and other deductions from pay?
+
+- Less than $10,000
+- $10,000 - $14,999
+- $15,000 - $24,999
+- $25,000 - $34,999
+- $35,000 - $49,999
+- $50,000 - $74,999
+- $75,000 - $99,999
+- $100,000 - $149,999
+- $150,000 - $199,999
+- $200,000 or more
+- Prefer not to say
+
+(5) Which of the following best describes your current employment status?
+
+- Employed full-time
+- Employed part-time
+- Self-employed
+- Student
+- Disabled
+- Retired
+- Unemployed
+- Prefer not to say
+
+(6) Where are you most likely to purchase disposable plastic cups?
+
+- Grocery stores
+- Convenience stores
+- Online
+
+(7) On average, how many disposable plastic cups do you use in a month?
+
+- 0-25 cups
+- 26-50 cups
+- 51-75 cups
+- 76-100 cups
+- 101+ cups
+
+Please let us know if you have any other thoughts or feedback on this survey.
+
+Your feedback will help us make future improvements :)
+
+(Open text response)
+
+---
+
+```{r, include=FALSE}
+completionCode <- round(runif(1, 10^5, 10^6))
+```
+
+##### Your completion code is: `r completionCode`
+
+Finish
+
+
+#### Survey Link
+
+<https://omaocups.formr.org/>
+
+
+
+
